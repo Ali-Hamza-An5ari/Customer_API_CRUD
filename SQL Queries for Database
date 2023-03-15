@@ -1,0 +1,75 @@
+
+
+
+CREATE TABLE [dbo].[customers] (
+    [Id]          UNIQUEIDENTIFIER NOT NULL,
+    [Name]        VARCHAR (255)    NOT NULL,
+    [Email]       VARCHAR (255)    NOT NULL,
+    [DateOfBirth] DATE             NOT NULL,
+    PRIMARY KEY CLUSTERED ([Id] ASC)
+);
+
+-----------------------------------------
+
+--GetAll Stored Procedure
+
+
+CREATE PROCEDURE getAllCustomers
+AS
+BEGIN
+    -- SET NOCOUNT ON added to prevent extra result sets from
+    -- interfering with SELECT statements.
+    SET NOCOUNT ON;
+
+    -- Select statements for procedure here
+    Select * from customers
+END
+
+
+--Get by Id Stored Procedure
+
+CREATE PROCEDURE getCustomerById
+	@Id uniqueidentifier
+AS
+BEGIN
+    -- SET NOCOUNT ON added to prevent extra result sets from
+    -- interfering with SELECT statements.
+    SET NOCOUNT ON;
+
+    -- Select statements for procedure here
+    SELECT * FROM customers WHERE Id=@Id
+END
+
+--Insert Stored Procedure
+
+CREATE PROCEDURE [dbo].[insertCustomer]
+	@Name varchar(255),
+	@Email varchar(255),
+	@DateOfBirth date
+AS
+BEGIN
+    SET NOCOUNT ON;
+    DECLARE @Id uniqueidentifier
+	SET @Id = NEWID()
+    INSERT INTO customers(Id, Name, Email, DateOfBirth) VALUES (@Id, @Name, @Email, @DateOfBirth)
+END
+
+
+--Update Stored Procedure
+
+CREATE PROCEDURE [dbo].[updateCustomer]
+	@Id uniqueidentifier,
+	@Name varchar(255),
+	@Email varchar(255),
+	@DateOfBirth date
+AS
+BEGIN
+    -- SET NOCOUNT ON added to prevent extra result sets from
+    -- interfering with SELECT statements.
+    SET NOCOUNT ON;
+
+    -- Select statements for procedure here
+    UPDATE customers SET Name=@Name, Email=@Email, DateOfBirth=@DateOfBirth WHERE Id=@Id
+END
+
+
