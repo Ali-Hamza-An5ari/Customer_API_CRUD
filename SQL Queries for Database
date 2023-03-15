@@ -1,5 +1,6 @@
-
-
+-- =============================================
+-- Author:		<Ali Hamza Ansari>
+-- =============================================
 
 CREATE TABLE [dbo].[customers] (
     [Id]          UNIQUEIDENTIFIER NOT NULL,
@@ -72,4 +73,19 @@ BEGIN
     UPDATE customers SET Name=@Name, Email=@Email, DateOfBirth=@DateOfBirth WHERE Id=@Id
 END
 
+
+--Delete Stored Procedure
+
+
+CREATE PROCEDURE [dbo].[deleteCustomer]
+	@Id uniqueidentifier
+AS
+BEGIN
+    -- SET NOCOUNT ON added to prevent extra result sets from
+    -- interfering with SELECT statements.
+    SET NOCOUNT ON;
+
+    -- Select statements for procedure here
+    DELETE FROM customers WHERE Id=@Id
+END
 
