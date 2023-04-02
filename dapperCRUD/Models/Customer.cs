@@ -8,7 +8,6 @@ namespace dapperCRUD.Models
                 
         public int Id { get; set; }
 
-
         [Required(ErrorMessage = "name required")]
         [MinLength(2)]
         [MaxLength(255)]
